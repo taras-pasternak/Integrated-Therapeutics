@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'category-01', photoId: 'photo-02' },
         { id: 'category-02', photoId: 'photo-03' },
         { id: 'category-03', photoId: 'photo-04' },
-        { id: 'category-04', photoId: 'photo-04' } // Reviews section
+        { id: 'category-04', photoId: 'photo-05' } // Reviews section
     ];
 
     // Ensure first photo is visible initially
@@ -83,58 +83,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.documentElement.style.setProperty('--biography-sticky-top', `${biographyTop}px`);
 
-        // We use a horizontal line exactly at the servicesStickyTop position for transitions
-        const bottomMargin = -(windowHeight - servicesStickyTop - 1);
-        const rootMargin = `-${servicesStickyTop}px 0px ${bottomMargin}px 0px`;
-
-        activeLineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const wrapper = entry.target;
-                const textContent = wrapper.querySelector('.approach-text, .services-text');
-                const sectionConfig = sections.find(s => s.id === wrapper.id);
-                
-                if (entry.isIntersecting) {
-                    // Fade IN text
-                    if (textContent) {
-                        textContent.classList.add('in-view');
-                        textContent.classList.remove('out-view');
-                    }
-                    
-                    // Switch photo
-                    if (sectionConfig && sectionConfig.photoId) {
-                        document.querySelectorAll('.photo').forEach(p => {
-                            if (p.id !== sectionConfig.photoId) {
-                                p.classList.remove('show');
-                                p.classList.add('hide');
-                            }
-                        });
+        // Decouple appear and disappear timings
+        const appearOffset = 250; // Appear when 250px below sticky point
+        const disappearOffset = 650; // Disappear 650px before being pushed up
+        
+        const appearLine = servicesStickyTop + appearOffset;
+        const disappearLine = servicesStickyTop + disappearOffset;
+        
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    sections.forEach(s => {
+                        const el = document.getElementById(s.id);
+                        if (!el) return;
                         
-                        const targetPhoto = document.getElementById(sectionConfig.photoId);
-                        if (targetPhoto) {
-                            targetPhoto.classList.remove('hide');
-                            targetPhoto.classList.add('show');
+                        const rect = el.getBoundingClientRect();
+                        const textContent = el.querySelector('.approach-text, .services-text');
+                        
+                        // Text animation logic
+                        if (textContent) {
+                            if (rect.top <= appearLine && rect.bottom >= disappearLine) {
+                                textContent.classList.add('in-view');
+                                textContent.classList.remove('is-above', 'is-below');
+                            } else if (rect.bottom < disappearLine) {
+                                textContent.classList.remove('in-view', 'is-below');
+                                textContent.classList.add('is-above');
+                            } else if (rect.top > appearLine) {
+                                textContent.classList.remove('in-view', 'is-above');
+                                textContent.classList.add('is-below');
+                            }
                         }
-                    }
-                } else {
-                    // Fade OUT text
-                    if (textContent) {
-                        textContent.classList.remove('in-view');
-                        textContent.classList.add('out-view');
-                    }
-                }
-            });
-        }, { 
-            rootMargin: rootMargin, 
-            threshold: 0 
-        });
-
-        // Observe all wrappers
-        sections.forEach(s => {
-            const el = document.getElementById(s.id);
-            if (el) {
-                activeLineObserver.observe(el);
+                        
+                        // Photo switching logic: switch when the section crosses the middle of the screen
+                        if (rect.top <= windowHeight/2 && rect.bottom >= windowHeight/2) {
+                            if (s.photoId) {
+                                document.querySelectorAll('.photo').forEach(p => {
+                                    if (p.id !== s.photoId) {
+                                        p.classList.remove('show');
+                                        p.classList.add('hide');
+                                    }
+                                });
+                                
+                                const targetPhoto = document.getElementById(s.photoId);
+                                if (targetPhoto) {
+                                    targetPhoto.classList.remove('hide');
+                                    targetPhoto.classList.add('show');
+                                }
+                            }
+                        }
+                    });
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
+        
+        // Trigger once on load to set initial states
+        window.dispatchEvent(new Event('scroll'));
     }
 
     // Initialize and listen to resize

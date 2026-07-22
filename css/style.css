@@ -247,6 +247,10 @@ body {
     background-image: url('../assets/images/01.jpg');
 }
 
+.photo-05 {
+    background-image: url('../assets/images/02.jpg'); /* placeholder for reviews */
+}
+
 /* The active photo */
 .photo.show {
     clip-path: inset(0 0 0 0);
@@ -457,15 +461,7 @@ body {
 /* Removed slide-up animation per user request */
 
 /* Base styles for all scrollytelling text */
-.approach-text {
-    position: sticky;
-    top: var(--services-sticky-top, 25vh);
-    align-self: flex-start; /* CRITICAL for sticky to work in flex container! */
-    max-width: 500px;
-    background: transparent;
-    z-index: 10;
-}
-
+.approach-text,
 .services-text {
     position: sticky;
     top: var(--services-sticky-top, 25vh);
@@ -473,21 +469,65 @@ body {
     max-width: 500px;
     background: transparent;
     z-index: 10;
-    
-    /* Animation states */
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.services-text.in-view {
+/* Base states for children to allow staggered animation */
+.approach-text .approach-lead,
+.approach-text .approach-body > *,
+.services-text .services-subtitle,
+.services-text .services-quote,
+.services-text .services-list > *,
+.approach-text > div > div {
+    opacity: 0;
+    transform: translateY(40px); /* Starts from below */
+    transition: opacity 1.0s ease, transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Staggered delays: headers first */
+.approach-text .approach-lead,
+.services-text .services-subtitle {
+    transition-delay: 0s;
+}
+.services-text .services-quote {
+    transition-delay: 0.1s;
+}
+
+/* For individual list items or paragraphs, stagger up to 6 items */
+.approach-body > *:nth-child(1), .services-list > *:nth-child(1), .approach-text > div > div:nth-child(1) { transition-delay: 0.2s; }
+.approach-body > *:nth-child(2), .services-list > *:nth-child(2), .approach-text > div > div:nth-child(2) { transition-delay: 0.3s; }
+.approach-body > *:nth-child(3), .services-list > *:nth-child(3), .approach-text > div > div:nth-child(3) { transition-delay: 0.4s; }
+.approach-body > *:nth-child(4), .services-list > *:nth-child(4), .approach-text > div > div:nth-child(4) { transition-delay: 0.5s; }
+.approach-body > *:nth-child(5), .services-list > *:nth-child(5), .approach-text > div > div:nth-child(5) { transition-delay: 0.6s; }
+.approach-body > *:nth-child(6), .services-list > *:nth-child(6), .approach-text > div > div:nth-child(6) { transition-delay: 0.7s; }
+
+.approach-text.in-view .approach-lead,
+.approach-text.in-view .approach-body > *,
+.services-text.in-view .services-subtitle,
+.services-text.in-view .services-quote,
+.services-text.in-view .services-list > *,
+.approach-text.in-view > div > div {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* Moves up to final position */
 }
 
-.services-text.out-view {
+.approach-text.is-above .approach-lead,
+.approach-text.is-above .approach-body > *,
+.services-text.is-above .services-subtitle,
+.services-text.is-above .services-quote,
+.services-text.is-above .services-list > *,
+.approach-text.is-above > div > div {
     opacity: 0;
-    transform: translateY(-40px);
+    transform: translateY(-40px); /* Exits upwards when scrolling down */
+}
+
+.approach-text.is-below .approach-lead,
+.approach-text.is-below .approach-body > *,
+.services-text.is-below .services-subtitle,
+.services-text.is-below .services-quote,
+.services-text.is-below .services-list > *,
+.approach-text.is-below > div > div {
+    opacity: 0;
+    transform: translateY(40px); /* Enters from below / Exits downwards when scrolling up */
 }
 
 .sticky-block-wrapper {
@@ -498,8 +538,14 @@ body {
     grid-template-rows: 1fr;
 }
 
-#category-01 {
-    height: 250vh; /* Збільшено висоту спеціально для Massage & Bodywork, бо там більше тексту */
+#category-01,
+#category-02,
+#category-03 {
+    height: 250vh; /* Збільшено висоту для всіх блоків послуг, щоб вони довше були на екрані */
+}
+
+#category-04 {
+    height: 350vh; /* Ще більша висота для відгуків, оскільки сам блок тексту великий */
 }
 
 .sticky-text-content {
