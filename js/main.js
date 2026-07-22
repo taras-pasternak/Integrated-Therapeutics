@@ -41,18 +41,124 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'category-04', photoId: 'photo-05' } // Reviews section
     ];
 
-    // Ensure first photo is visible initially
-    const firstPhoto = document.getElementById('photo-01');
-    if (firstPhoto) firstPhoto.classList.add('show');
+    // All sections including hero for scroll dots
+    const allSections = [
+        { id: 'hero' },
+        ...sections,
+        { id: 'contact' }
+    ];
 
-    let activeLineObserver;
+    // Create scroll indicators once
+    const indicatorContainer = document.createElement('div');
+    indicatorContainer.className = 'scroll-indicators';
+    allSections.forEach((s) => {
+        const dot = document.createElement('button');
+        dot.className = 'scroll-dot';
+        dot.dataset.target = s.id;
+        dot.setAttribute('aria-label', `Go to ${s.id}`);
+        dot.addEventListener('click', () => {
+            const el = document.getElementById(s.id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        indicatorContainer.appendChild(dot);
+    });
+    document.body.appendChild(indicatorContainer);
+
+    // Global variables for scroll logic
+    let appearLine = 0;
+    let disappearLine = 0;
+    let windowHeight = window.innerHeight;
+    
+    // Extract the scroll logic into a single event listener to prevent stacking on resize
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                // Find active section for dots
+                let activeId = 'hero';
+                allSections.forEach(s => {
+                    const el = document.getElementById(s.id);
+                    if (!el) return;
+                    const rect = el.getBoundingClientRect();
+                    // If top of section is above the middle of screen, consider it active
+                    if (rect.top <= windowHeight / 2) {
+                        activeId = s.id;
+                    }
+                });
+
+                // Update dots UI and container theme
+                const indicatorContainer = document.querySelector('.scroll-indicators');
+                if (indicatorContainer) {
+                    if (activeId === 'hero' || activeId === 'contact') {
+                        indicatorContainer.classList.add('theme-dark-bg');
+                    } else {
+                        indicatorContainer.classList.remove('theme-dark-bg');
+                    }
+                }
+
+                document.querySelectorAll('.scroll-dot').forEach(dot => {
+                    if (dot.dataset.target === activeId) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+
+                // Original logic for text and photos
+                sections.forEach(s => {
+                    const el = document.getElementById(s.id);
+                    if (!el) return;
+                    
+                    const rect = el.getBoundingClientRect();
+                    const textContent = el.querySelector('.approach-text, .services-text');
+                    
+                    // Text animation logic
+                    if (textContent) {
+                        if (rect.top <= appearLine && rect.bottom >= disappearLine) {
+                            textContent.classList.add('in-view');
+                            textContent.classList.remove('is-above', 'is-below');
+                        } else if (rect.bottom < disappearLine) {
+                            textContent.classList.remove('in-view', 'is-below');
+                            textContent.classList.add('is-above');
+                        } else if (rect.top > appearLine) {
+                            textContent.classList.remove('in-view', 'is-above');
+                            textContent.classList.add('is-below');
+                        }
+                    }
+                    
+                    // Photo switching logic
+                    if (rect.top <= windowHeight/2 && rect.bottom >= windowHeight/2) {
+                        if (s.photoId) {
+                            document.querySelectorAll('.photo').forEach(p => {
+                                if (p.id !== s.photoId) {
+                                    p.classList.remove('show');
+                                    p.classList.add('hide');
+                                }
+                            });
+                            
+                            const targetPhoto = document.getElementById(s.photoId);
+                            if (targetPhoto) {
+                                targetPhoto.classList.remove('hide');
+                                targetPhoto.classList.add('show');
+                            }
+                        }
+                    }
+                });
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
 
     function initScrollLogic() {
-        if (activeLineObserver) {
-            activeLineObserver.disconnect();
-        }
+        windowHeight = window.innerHeight;
+        
+        // Ensure first photo is visible initially
+        const firstPhoto = document.getElementById('photo-01');
+        if (firstPhoto) firstPhoto.classList.add('show');
 
-        const windowHeight = window.innerHeight;
         const heading = document.querySelector('.approach-heading-wrapper');
         
         // 2rem is the sticky top of the heading. Get 1rem in px:
@@ -87,58 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const appearOffset = 250; // Appear when 250px below sticky point
         const disappearOffset = 650; // Disappear 650px before being pushed up
         
-        const appearLine = servicesStickyTop + appearOffset;
-        const disappearLine = servicesStickyTop + disappearOffset;
-        
-        let ticking = false;
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    sections.forEach(s => {
-                        const el = document.getElementById(s.id);
-                        if (!el) return;
-                        
-                        const rect = el.getBoundingClientRect();
-                        const textContent = el.querySelector('.approach-text, .services-text');
-                        
-                        // Text animation logic
-                        if (textContent) {
-                            if (rect.top <= appearLine && rect.bottom >= disappearLine) {
-                                textContent.classList.add('in-view');
-                                textContent.classList.remove('is-above', 'is-below');
-                            } else if (rect.bottom < disappearLine) {
-                                textContent.classList.remove('in-view', 'is-below');
-                                textContent.classList.add('is-above');
-                            } else if (rect.top > appearLine) {
-                                textContent.classList.remove('in-view', 'is-above');
-                                textContent.classList.add('is-below');
-                            }
-                        }
-                        
-                        // Photo switching logic: switch when the section crosses the middle of the screen
-                        if (rect.top <= windowHeight/2 && rect.bottom >= windowHeight/2) {
-                            if (s.photoId) {
-                                document.querySelectorAll('.photo').forEach(p => {
-                                    if (p.id !== s.photoId) {
-                                        p.classList.remove('show');
-                                        p.classList.add('hide');
-                                    }
-                                });
-                                
-                                const targetPhoto = document.getElementById(s.photoId);
-                                if (targetPhoto) {
-                                    targetPhoto.classList.remove('hide');
-                                    targetPhoto.classList.add('show');
-                                }
-                            }
-                        }
-                    });
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
+        appearLine = servicesStickyTop + appearOffset;
+        disappearLine = servicesStickyTop + disappearOffset;
         
         // Trigger once on load to set initial states
         window.dispatchEvent(new Event('scroll'));
