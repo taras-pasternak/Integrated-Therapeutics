@@ -432,6 +432,10 @@ body {
     margin-bottom: 25rem;
 }
 
+#section-approach {
+    min-height: 250vh;
+}
+
 #section-services {
     min-height: 450vh; /* Збільшена висота для більшого скролу */
 }
@@ -449,6 +453,7 @@ body {
     top: 2rem;
     z-index: 20;
     margin-bottom: 2rem;
+}
 /* Removed slide-up animation per user request */
 
 /* Base styles for all scrollytelling text */
@@ -491,6 +496,10 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+}
+
+#category-01 {
+    height: 250vh; /* Збільшено висоту спеціально для Massage & Bodywork, бо там більше тексту */
 }
 
 .sticky-text-content {
