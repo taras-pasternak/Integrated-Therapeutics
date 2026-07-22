@@ -109,7 +109,7 @@ body {
 .hero-title {
     font-size: clamp(4rem, 10vw, 9.5rem);
     line-height: 0.9;
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: -0.03em;
     margin-bottom: 2rem;
     text-transform: uppercase;
@@ -118,6 +118,11 @@ body {
 .hero-char {
     display: inline-block;
     transition: font-weight 0.1s ease-out;
+}
+
+.hero-italic {
+    font-style: italic;
+    font-weight: 300;
 }
 
 .hero-subtitle {

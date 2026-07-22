@@ -2,26 +2,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Interactive Hero Title Font Weight (Mouse hover effect)
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
-        const text = heroTitle.innerHTML;
-        let newHTML = '';
-        // Split by <br> to preserve newlines
-        const parts = text.split(/(<br\s*\/?>)/i);
-        parts.forEach(part => {
-            if (/^<br\s*\/?>$/i.test(part)) {
-                newHTML += part;
-            } else {
-                // Split by characters
-                const chars = part.split('');
-                chars.forEach(char => {
-                    if (char === ' ') {
-                        newHTML += ' ';
-                    } else {
-                        newHTML += `<span class="hero-char">${char}</span>`;
-                    }
-                });
-            }
-        });
-        heroTitle.innerHTML = newHTML;
+        function wrapTextNodes(element) {
+            const childNodes = Array.from(element.childNodes);
+            childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.textContent;
+                    const chars = text.split('');
+                    const fragment = document.createDocumentFragment();
+                    chars.forEach(char => {
+                        if (char === ' ') {
+                            fragment.appendChild(document.createTextNode(' '));
+                        } else {
+                            const span = document.createElement('span');
+                            span.className = 'hero-char';
+                            span.textContent = char;
+                            fragment.appendChild(span);
+                        }
+                    });
+                    element.replaceChild(fragment, node);
+                } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
+                    wrapTextNodes(node);
+                }
+            });
+        }
+        wrapTextNodes(heroTitle);
 
         const charsElements = heroTitle.querySelectorAll('.hero-char');
         
@@ -53,8 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const effectRadius = 250; // Radius in pixels
             
             charsElements.forEach(char => {
+                const isItalic = char.closest('.hero-italic') !== null;
+                const baseWeight = isItalic ? 300 : 900;
+
                 if (!isHovering) {
-                    char.style.fontWeight = 700; // Reset to bold
+                    char.style.fontWeight = baseWeight;
                     return;
                 }
                 
@@ -67,12 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const distance = Math.sqrt(distX * distX + distY * distY);
                 
                 if (distance < effectRadius) {
-                    // 0 distance = weight 100, radius distance = weight 700
                     const progress = distance / effectRadius;
-                    const weight = 100 + (700 - 100) * progress;
+                    const weight = 100 + (baseWeight - 100) * progress;
                     char.style.fontWeight = weight;
                 } else {
-                    char.style.fontWeight = 700;
+                    char.style.fontWeight = baseWeight;
                 }
             });
         }
