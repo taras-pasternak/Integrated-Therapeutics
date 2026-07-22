@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let appearLine = 0;
     let disappearLine = 0;
     let windowHeight = window.innerHeight;
+    let servicesStickyTop = 0;
+    let biographyTop = 0;
     
     // Extract the scroll logic into a single event listener to prevent stacking on resize
     let ticking = false;
@@ -116,13 +118,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Text animation logic
                     if (textContent) {
-                        if (rect.top <= appearLine && rect.bottom >= disappearLine) {
+                        let elStickyTop = servicesStickyTop;
+                        if (s.id === 'section-approach') {
+                            // Fetch dynamic custom property or fallback to JS variable
+                            elStickyTop = biographyTop || servicesStickyTop;
+                        }
+                        
+                        // Appear 100px before sticking, disappear 500px before pushing up
+                        const elAppearLine = elStickyTop + 100;
+                        const elDisappearLine = elStickyTop + 500;
+
+                        if (rect.top <= elAppearLine && rect.bottom >= elDisappearLine) {
                             textContent.classList.add('in-view');
                             textContent.classList.remove('is-above', 'is-below');
-                        } else if (rect.bottom < disappearLine) {
+                        } else if (rect.bottom < elDisappearLine) {
                             textContent.classList.remove('in-view', 'is-below');
                             textContent.classList.add('is-above');
-                        } else if (rect.top > appearLine) {
+                        } else if (rect.top > elAppearLine) {
                             textContent.classList.remove('in-view', 'is-above');
                             textContent.classList.add('is-below');
                         }
@@ -171,12 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Calculate where the Services text should stick: 72px below the heading
-        const servicesStickyTop = headingStickyTop + headingHeight + 72;
+        servicesStickyTop = headingStickyTop + headingHeight + 72;
         document.documentElement.style.setProperty('--services-sticky-top', `${servicesStickyTop}px`);
 
         // Calculate where the Biography text should stick: pinned to bottom of viewport
         const biographyText = document.querySelector('.approach-text');
-        let biographyTop = servicesStickyTop; // fallback
+        biographyTop = servicesStickyTop; // fallback
         if (biographyText) {
             const textHeight = biographyText.getBoundingClientRect().height;
             // Pin to bottom: windowHeight - textHeight - 2rem (margin from bottom)
