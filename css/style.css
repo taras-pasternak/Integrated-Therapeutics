@@ -115,6 +115,11 @@ body {
     text-transform: uppercase;
 }
 
+.hero-char {
+    display: inline-block;
+    transition: font-weight 0.1s ease-out;
+}
+
 .hero-subtitle {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     color: var(--accent);
