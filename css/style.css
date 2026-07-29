@@ -682,10 +682,16 @@ h3, .approach-lead, .services-subtitle {
     margin-bottom: 2rem;
     border-top: 1px solid var(--accent-color);
     padding-top: 1rem; /* reduced from 1.5rem */
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: baseline;
-    row-gap: 0.5rem;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-right: 2rem; /* space before price */
 }
 
 .service-title {
@@ -704,11 +710,10 @@ h3, .approach-lead, .services-subtitle {
 }
 
 .text-body {
-    grid-column: 1 / -1;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 18px;
     line-height: 24px;
-    margin-top: 0; /* removed since we use row-gap */
+    margin-top: 0;
     color: rgba(0, 0, 0, 0.7); /* black color with 70% opacity */
     font-weight: 400; /* regular */
 }
