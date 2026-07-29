@@ -505,7 +505,7 @@ body {
 /* Sticky heading wrapper */
 .approach-heading-wrapper {
     position: sticky;
-    top: 80px;
+    top: 140px; /* Збільшено з 80px, щоб заголовок зупинявся нижче хедера */
     margin-bottom: 30vh;
     z-index: 10;
     /* Native scroll animation setup */
@@ -680,7 +680,7 @@ h3, .approach-lead, .services-subtitle {
 /* --- Sticky Approach Section --- */
 .approach-section {
     position: relative;
-    padding-top: 2rem;
+    padding-top: 10rem; /* Збільшений верхній падінг, щоб хедер не налазив */
     min-height: 400vh; /* Збільшена висота для ще довшого скролу */
     display: block; /* Fix for Safari sticky bug with min-height */
 }
