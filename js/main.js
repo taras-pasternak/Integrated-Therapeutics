@@ -252,6 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (targetPhoto) {
                                 targetPhoto.classList.remove('hide');
                                 targetPhoto.classList.add('show');
+                                
+                                // Calculate grayscale based on scroll progress of the section
+                                // rect.top goes from windowHeight/2 down to 0
+                                let grayscaleProgress = rect.top / (windowHeight / 2); // 1.0 when at middle, 0.0 when at top
+                                grayscaleProgress = Math.max(0, Math.min(1, grayscaleProgress));
+                                
+                                // Convert to percentage
+                                targetPhoto.style.filter = `grayscale(${grayscaleProgress * 100}%)`;
                             }
                         }
                     }
