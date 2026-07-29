@@ -810,8 +810,8 @@ body {
 
 .form-footer {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: center;
     margin-top: 1rem;
 }
 
