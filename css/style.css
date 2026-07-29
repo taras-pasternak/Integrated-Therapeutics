@@ -733,8 +733,6 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    max-width: 1400px;
-    margin: 0 auto;
     width: 100%;
     gap: 4rem;
 }
@@ -750,7 +748,7 @@ body {
     flex: 1;
     max-width: 600px;
     width: 100%;
-    align-self: center;
+    align-self: flex-start;
 }
 
 .contact-title {
