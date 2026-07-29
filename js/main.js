@@ -357,4 +357,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Hero Spotlight Effect
+    const heroWrapper = document.getElementById('hero');
+    const heroPlaceholder = document.querySelector('.background-placeholder');
+    if (heroWrapper && heroPlaceholder) {
+        heroWrapper.addEventListener('mousemove', (e) => {
+            const rect = heroWrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            heroPlaceholder.style.setProperty('--x', `${x}px`);
+            heroPlaceholder.style.setProperty('--y', `${y}px`);
+        });
+    }
 });

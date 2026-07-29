@@ -48,8 +48,23 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #1a1a1a; /* Dark gray placeholder */
+    background-image: url('../assets/images/01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: var(--bg-dark); /* Fallback */
     z-index: 1;
+    
+    /* Spotlight mask */
+    --x: 50%;
+    --y: 50%;
+    -webkit-mask-image: radial-gradient(circle 400px at var(--x) var(--y), black 0%, transparent 100%);
+    mask-image: radial-gradient(circle 400px at var(--x) var(--y), black 0%, transparent 100%);
+    opacity: 0; /* Hidden by default until hovered */
+    transition: opacity 0.5s ease;
+}
+
+.hero-wrapper:hover .background-placeholder {
+    opacity: 0.6; /* Slight dimming so text is perfectly readable */
 }
 
 /* Ensure content stays above the background */
