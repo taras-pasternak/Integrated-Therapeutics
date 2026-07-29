@@ -687,7 +687,7 @@ h3, .approach-lead, .services-subtitle {
 
 .approach-heading-wrapper {
     position: sticky;
-    top: 2rem;
+    top: 150px; /* Опущено нижче, щоб не закривати лого */
     z-index: 20;
     margin-bottom: 2rem;
 }
