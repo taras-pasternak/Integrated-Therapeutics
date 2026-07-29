@@ -690,7 +690,7 @@ h3, .approach-lead, .services-subtitle {
     font-weight: 200; /* thin */
     font-size: 24px;
     display: inline-block;
-    color: #FFFFFF; /* white text */
+    color: var(--accent-color); /* orange color */
     vertical-align: middle;
 }
 
@@ -698,7 +698,8 @@ h3, .approach-lead, .services-subtitle {
     font-size: var(--text-body-size, 16px);
     line-height: 1.6;
     margin-top: 0.5rem;
-    color: var(--text-main);
+    color: #000000; /* black color */
+    font-weight: 400; /* regular */
 }
 
 .category-spacing {
