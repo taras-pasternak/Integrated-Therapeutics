@@ -729,28 +729,21 @@ body {
 }
 
 .contact-content-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
     width: 100%;
     gap: 4rem;
 }
 
 .contact-title-wrapper {
-    flex: 1;
+    /* Title aligned to top edge by default in grid */
 }
 
 .contact-form-wrapper {
-    flex: 1;
     max-width: 600px;
     width: 100%;
-}
-
-@media (min-width: 1400px) {
-    .contact-form-wrapper {
-        padding-right: 5rem;
-    }
+    justify-self: center; /* Centers horizontally in the right column */
 }
 
 .contact-title {
@@ -766,7 +759,7 @@ body {
 
 @media (max-width: 900px) {
     .contact-content-wrapper {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 }
 
