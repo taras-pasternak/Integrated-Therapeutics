@@ -161,7 +161,7 @@ body {
     background-color: transparent;
     min-width: 300px;
     box-shadow: none;
-    padding: 1.5rem 0 0.5rem 0; /* Збільшений верхній падінг */
+    padding: 3rem 0 0.5rem 0; /* Ще більше збільшений верхній падінг для зсуву вниз */
     border-radius: 0;
     opacity: 0;
     visibility: hidden;
