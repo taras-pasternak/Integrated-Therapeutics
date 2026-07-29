@@ -468,8 +468,9 @@ body {
     font-size: 64px;
     color: #FFFFFF;
     text-align: right;
-    width: 100%;
-    padding-left: 2rem;
+    max-width: 900px;
+    width: 85%;
+    text-wrap: balance;
     z-index: 20;
     line-height: 1.1;
     /* Optional shadow to ensure readability on images */
