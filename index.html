@@ -17,14 +17,26 @@
         
         <header class="header">
             <div class="logo">
-                <!-- Заглушка для логотипу, можете замінити на <img> -->
-                <svg width="24" height="32" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="6" y="0" width="2" height="32" fill="#EAE3DE"/>
-                    <rect x="16" y="10" width="2" height="22" fill="#EAE3DE"/>
-                </svg>
+                <img src="assets/images/logo icon/white.svg" class="logo-white" alt="Integrated Therapeutics Logo" style="height: 48px; width: auto;">
+                <img src="assets/images/logo icon/black.svg" class="logo-black" alt="Integrated Therapeutics Logo" style="height: 48px; width: auto; display: none;">
             </div>
             <div class="header-right">
-                <a href="#" class="btn-book">BOOK NOW ↗</a>
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="#section-approach">Bio</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#section-services" class="dropdown-toggle" style="display: flex; align-items: center; gap: 4px;">Services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#category-01">Massage & Bodywork</a></li>
+                                <li><a href="#category-02">Energy & Alternative Therapies</a></li>
+                                <li><a href="#category-03">Specialized Treatments</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#section-reviews">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <a href="https://cal.com/tlielaxu-integrated-therapeutics" target="_blank" rel="noopener noreferrer" class="btn-book">BOOK NOW ↗</a>
                 <button class="btn-menu">
                     <span></span>
                     <span></span>
@@ -49,12 +61,26 @@
                     <p>2166 Market St.<br>San Francisco, CA 94114</p>
                 </div>
                 <div class="details">
-                    <a href="mailto:tlielaxu@integrated-therapeutics.net">tlielaxu@integrated-therapeutics.net</a>
+                    <a href="mailto:tlielaxu@integrated-therapeutic.com">tlielaxu@integrated-therapeutic.com</a>
                     <a href="tel:415-205-5959">(415)-205-5959</a>
                 </div>
-            </div>
-            <div class="copyright">
-                INTEGRATED THERAPEUTICS 2025 ©
+                <div class="copyright" style="display: flex; align-items: flex-end;">
+                    © All rights reserved<br>INTEGRATED THERAPEUTICS 2026
+                </div>
+                <div class="social-links" style="display: flex; gap: 1rem; align-items: flex-end;">
+                    <a href="#" target="_blank" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><rect width="256" height="256" fill="none"/><path d="M232,128a104.16,104.16,0,0,1-91.55,103.26,4,4,0,0,1-4.45-4V152h24a8,8,0,0,0,8-8.53,8.17,8.17,0,0,0-8.25-7.47H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,8-8.53A8.17,8.17,0,0,0,167.73,80H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0-8,8.53A8.17,8.17,0,0,0,96.27,152H120v75.28a4,4,0,0,1-4.44,4A104.15,104.15,0,0,1,24.07,124.09c2-54,45.74-97.9,99.78-100A104.12,104.12,0,0,1,232,128Z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><rect width="256" height="256" fill="none"/><path d="M160,128a32,32,0,1,1-32-32A32,32,0,0,1,160,128Zm72-48v96a56.06,56.06,0,0,1-56,56H80a56.06,56.06,0,0,1-56-56V80A56.06,56.06,0,0,1,80,24h96A56.06,56.06,0,0,1,232,80Zm-56,48a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128Zm24-60a12,12,0,1,0-12,12A12,12,0,0,0,200,68Z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><rect width="256" height="256" fill="none"/><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0ZM88,96a12,12,0,1,1,12-12A12,12,0,0,1,88,96Zm96,80a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Yelp">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.02,2.37L10.95,7.74C10.87,8.23 11.23,8.7 11.75,8.74L16.94,9.05C17.47,9.08 17.82,8.5 17.57,8.04L14.93,3.31C14.67,2.83 13.92,2.83 13.67,3.31L12.02,2.37M20.25,12.7L15.34,11.53C14.86,11.41 14.39,11.83 14.47,12.31L15.42,17.29C15.51,17.78 16.21,17.94 16.63,17.59L20.4,14.44C20.8,14.07 20.73,13.41 20.25,12.7M13.25,13.88L9.22,10.63C8.83,10.31 8.24,10.51 8.16,11.02L7.38,16.29C7.3,16.8 7.74,17.22 8.24,17.1L13.31,16.14C13.8,16.03 13.87,15.39 13.25,13.88M4.27,10.88L9.04,11.58C9.53,11.65 9.87,11.14 9.68,10.69L7.54,6.07C7.33,5.6 6.55,5.62 6.37,6.1L4.17,10.1C3.96,10.51 4.22,10.8 4.27,10.88Z" /></svg>
+                    </a>
+                </div>
             </div>
         </footer>
     </div>
@@ -69,10 +95,9 @@
                 <div class="approach-text">
                     <p class="approach-lead">Biography</p>
                     <div class="approach-body">
-                        <p><strong>Hi, I'm Tlielaxu</strong></p>
-                        <p>A California Certified Massage Therapist (CMT #77839), holistic healer, and breathwork guide based in Encinitas, CA.</p>
-                        <p>With extensive training in both Eastern and Western traditions—from deep tissue and biomechanical sports therapy to Thai massage, Esalen techniques, and Reiki—I blend science and intuition to craft highly personalized sessions.</p>
-                        <p>My goal is to help you release physical tension, restore energetic balance, and achieve a profound state of wellness.</p>
+                        <p>Tlielaxu began practicing in 2003, working with Olympic hopefuls and the UC Berkeley swim and water polo teams. His early exposure to sports therapy and his father’s influence in chiropractic still inform how each session is built.</p>
+                        <br>
+                        <p>Through the lens of Biomechanical Sports Therapy, each session draws from Active Release Techniques, Somatics, Deep Tissue, Thai, Tui Na, Ashiatsu, Esalen, and LaStone Therapy, then adapts in real time to the needs of the individual athlete.</p>
                     </div>
                 </div>
                 
@@ -181,40 +206,35 @@
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <h2 class="contact-title">GET IN<br>TOUCH</h2>
-        
-        <form class="contact-form">
-            <div class="form-group">
-                <label for="fullName">FULL NAME</label>
-                <input type="text" id="fullName" name="fullName" placeholder="John DOE">
+        <div class="contact-content-wrapper">
+            <div class="contact-title-wrapper">
+                <h2 class="contact-title">GET <span class="hero-italic">IN</span><br>TOUCH</h2>
             </div>
             
-            <div class="form-group">
-                <label for="email">EMAIL</label>
-                <input type="email" id="email" name="email" placeholder="exemple@mail.com">
-            </div>
-            
-            <div class="form-group">
-                <label for="message">YOUR MESSAGE</label>
-                <textarea id="message" name="message" placeholder="Type your message here..." rows="1"></textarea>
-            </div>
-            
-            <div class="form-footer">
-                <!-- Simple recaptcha placeholder -->
-                <div class="recaptcha-placeholder">
-                    <div class="recaptcha-left">
-                        <input type="checkbox" id="recaptcha-check">
-                        <label for="recaptcha-check" style="text-transform: none; font-weight: 400; letter-spacing: normal; cursor: pointer;">I'm not a robot</label>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mwvgzppz" method="POST">
+                    <div class="form-group">
+                        <label for="fullName">FULL NAME</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="John DOE" required>
                     </div>
-                    <div class="recaptcha-right">
-                        <svg viewBox="0 0 48 48" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16z"/><path fill="#34A853" d="M33 17L21 29l-6-6-3 3 9 9 15-15z"/></svg>
-                        <span>reCAPTCHA</span>
+                    
+                    <div class="form-group">
+                        <label for="email">EMAIL</label>
+                        <input type="email" id="email" name="email" placeholder="exemple@mail.com" required>
                     </div>
-                </div>
-                
-                <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                    
+                    <div class="form-group">
+                        <label for="message">YOUR MESSAGE</label>
+                        <textarea id="message" name="message" placeholder="Type your message here..." rows="1" required></textarea>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <p id="form-status" style="margin: 0; padding-right: 15px; font-weight: 500; font-size: 0.9rem; color: var(--accent-color);"></p>
+                        <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </section>
 
     <script src="js/main.js?v=17"></script>

@@ -7,8 +7,16 @@
 
 :root {
     --text-main: #EAE3DE;
-    --accent: #FF3B1D; /* Orange-red color */
+    --accent-color: #ce5d36; /* Orange-red color */
     --bg-dark: #121212;
+    --text-button-size: 1.05rem;
+    --text-button-weight: 500;
+    --text-button-spacing: 0.05em;
+    --text-button-transform: uppercase;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -45,17 +53,34 @@ body {
 }
 
 /* Ensure content stays above the background */
-.header, .hero-content, .hero-footer {
+.hero-content, .hero-footer {
     position: relative;
     z-index: 2;
 }
 
 /* --- Header --- */
 .header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2.5rem 3rem;
+    z-index: 100;
+    pointer-events: none; /* Let clicks pass through header background */
+}
+.header > * {
+    pointer-events: auto; /* Enable clicks on logo and buttons */
+}
+
+.header.header-inverted .logo-white {
+    display: none !important;
+}
+
+.header.header-inverted .logo-black {
+    display: block !important;
 }
 
 .logo {
@@ -69,15 +94,102 @@ body {
     gap: 2rem;
 }
 
+/* Desktop Navigation */
+.desktop-nav {
+    display: none;
+}
+
+@media (min-width: 901px) {
+    .desktop-nav {
+        display: block;
+    }
+    .btn-menu {
+        display: none !important;
+    }
+}
+
+.desktop-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: var(--text-button-size);
+    font-weight: var(--text-button-weight);
+    text-transform: var(--text-button-transform);
+    letter-spacing: var(--text-button-spacing);
+    transition: color 0.3s ease;
+}
+
+.desktop-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Dropdown */
+.nav-dropdown {
+    position: relative;
+    padding: 1rem 0; /* Add padding to prevent hover drop-off */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: translateY(10px);
+    background-color: transparent;
+    min-width: 300px;
+    box-shadow: none;
+    padding: 1.5rem 0 0.5rem 0; /* Збільшений верхній падінг */
+    border-radius: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0;
+    font-size: var(--text-button-size);
+    text-transform: var(--text-button-transform);
+    font-weight: var(--text-button-weight);
+    letter-spacing: var(--text-button-spacing);
+    color: var(--text-main) !important;
+}
+
+.dropdown-menu a:hover {
+    color: var(--accent-color) !important;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .btn-book {
-    border: 1px solid var(--accent);
+    border: 1px solid var(--accent-color);
     color: var(--text-main);
     text-decoration: none;
     padding: 0.6rem 1.5rem;
     border-radius: 50px;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    font-weight: 400;
+    font-size: var(--text-button-size);
+    font-weight: var(--text-button-weight);
+    text-transform: var(--text-button-transform);
+    letter-spacing: var(--text-button-spacing);
 }
 
 .btn-menu {
@@ -127,7 +239,7 @@ body {
 
 .hero-subtitle {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
-    color: var(--accent);
+    color: var(--accent-color);
     font-weight: 600;
     letter-spacing: 0.02em;
     line-height: 1.5;
@@ -144,8 +256,9 @@ body {
 }
 
 .contact-info {
-    display: flex;
-    gap: 4rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem 4rem;
     font-size: 0.95rem;
     line-height: 1.5;
     font-weight: 300;
@@ -167,9 +280,13 @@ body {
     flex-direction: column;
 }
 
-.details a {
+.details a, .social-links a {
     color: var(--text-main);
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+.details a:hover, .social-links a:hover {
+    color: var(--accent-color);
 }
 
 .copyright {
@@ -211,6 +328,8 @@ body {
     padding: 6rem 4rem;
     position: relative;
     min-height: 150vh;
+    background-color: #FFFFFF;
+    color: #121212;
 }
 
 .right-fixed {
@@ -319,7 +438,7 @@ body {
 }
 
 .approach-title {
-    color: var(--accent);
+    color: var(--accent-color);
     position: relative;
     z-index: 2;
 }
@@ -596,28 +715,54 @@ body {
 .contact-section {
     background-color: var(--bg-dark);
     color: var(--text-main);
-    padding: 10rem 3rem 6rem;
+    padding: 6rem 3rem;
+    min-height: 100svh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     position: relative;
     z-index: 10;
 }
 
+.contact-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    gap: 4rem;
+}
+
+.contact-title-wrapper {
+    flex: 1;
+}
+
+.contact-form-wrapper {
+    flex: 1;
+    max-width: 600px;
+    width: 100%;
+}
+
 .contact-title {
-    font-size: clamp(5rem, 15vw, 12rem);
-    font-weight: 800;
+    font-size: clamp(4rem, 10vw, 9.5rem);
+    font-weight: 900;
     line-height: 0.9;
     text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 6rem;
-    letter-spacing: -0.04em;
+    text-align: left;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
     color: #E3D3CF;
+}
+
+@media (max-width: 900px) {
+    .contact-content-wrapper {
+        flex-direction: column;
+    }
 }
 
 .contact-form {
     width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -644,7 +789,7 @@ body {
     padding: 0.5rem 0 1rem;
     font-family: inherit;
     font-size: 1.5rem;
-    color: var(--accent);
+    color: var(--accent-color);
     outline: none;
     transition: border-color 0.3s ease;
     resize: none;
@@ -652,7 +797,7 @@ body {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: var(--accent);
+    color: var(--accent-color);
     opacity: 1;
 }
 
@@ -721,11 +866,12 @@ body {
     padding: 1.2rem 2rem;
     border-radius: 50px;
     font-family: inherit;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: var(--text-button-size);
+    font-weight: var(--text-button-weight);
+    text-transform: var(--text-button-transform);
+    letter-spacing: var(--text-button-spacing);
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 0.05em;
 }
 
 .btn-submit:hover {
@@ -788,7 +934,7 @@ body {
 }
 
 .scroll-dot.active {
-    background-color: var(--accent) !important; /* Always orange when active */
+    background-color: var(--accent-color) !important; /* Always orange when active */
     opacity: 1 !important;
     transform: scale(1.5);
 }

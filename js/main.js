@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Interactive Hero Title Font Weight (Mouse hover effect)
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
+    // Interactive Title Font Weight (Mouse hover effect)
+    const animatedTitles = document.querySelectorAll('.hero-title, .contact-title');
+    if (animatedTitles.length > 0) {
         function wrapTextNodes(element) {
             const childNodes = Array.from(element.childNodes);
             childNodes.forEach(node => {
@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-        wrapTextNodes(heroTitle);
+        
+        animatedTitles.forEach(title => wrapTextNodes(title));
 
-        const charsElements = heroTitle.querySelectorAll('.hero-char');
+        const charsElements = document.querySelectorAll('.hero-char');
         
         let mouseX = 0;
         let mouseY = 0;
@@ -177,11 +178,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Update dots UI and container theme
                 const indicatorContainer = document.querySelector('.scroll-indicators');
+                const header = document.querySelector('.header');
+
                 if (indicatorContainer) {
                     if (activeId === 'hero' || activeId === 'contact') {
                         indicatorContainer.classList.add('theme-dark-bg');
                     } else {
                         indicatorContainer.classList.remove('theme-dark-bg');
+                    }
+                }
+
+                if (header) {
+                    // hero and contact have dark backgrounds (need white logo)
+                    // approach and services have white backgrounds (need black logo)
+                    if (activeId === 'hero' || activeId === 'contact') {
+                        header.classList.remove('header-inverted');
+                    } else {
+                        header.classList.add('header-inverted');
                     }
                 }
 
@@ -307,4 +320,41 @@ document.addEventListener('DOMContentLoaded', () => {
         document.fonts.ready.then(initScrollLogic);
     }
     window.addEventListener('load', initScrollLogic);
+
+    // Form submission logic
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            formStatus.textContent = "Sending...";
+            
+            const data = new FormData(contactForm);
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formStatus.textContent = "Message sent successfully!";
+                    contactForm.reset();
+                    setTimeout(() => formStatus.textContent = "", 5000);
+                } else {
+                    const responseData = await response.json();
+                    if (Object.hasOwn(responseData, 'errors')) {
+                        formStatus.textContent = responseData["errors"].map(error => error["message"]).join(", ");
+                    } else {
+                        formStatus.textContent = "Oops! There was a problem submitting your form";
+                    }
+                }
+            } catch (error) {
+                formStatus.textContent = "Oops! There was a problem submitting your form";
+            }
+        });
+    }
 });
