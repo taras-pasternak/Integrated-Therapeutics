@@ -190,13 +190,13 @@ body {
     border: 1px solid var(--accent-color);
     color: var(--text-main);
     text-decoration: none;
-    padding: 24px 32px;
+    padding: 18px 32px;
     border-radius: 50px;
     font-family: inherit;
     font-size: var(--text-button-size);
     font-weight: var(--text-button-weight);
     text-transform: var(--text-button-transform);
-    letter-spacing: var(--text-button-spacing);
+    letter-spacing: 0.1em;
     cursor: pointer;
     overflow: hidden;
     transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -214,7 +214,7 @@ body {
     overflow: hidden;
     user-select: none;
     pointer-events: none;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     font-size: var(--text-button-size);
 }
 
@@ -235,7 +235,7 @@ body {
 
 .btn-primary:hover {
     color: #fff;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     font-size: calc(var(--text-button-size) - 1px);
     border-color: var(--accent-color);
 }
