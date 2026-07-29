@@ -670,6 +670,8 @@ h3, .approach-lead, .services-subtitle {
 
 .service-item {
     margin-bottom: 2rem;
+    border-top: 1px solid var(--accent-color);
+    padding-top: 1.5rem;
 }
 
 .service-title {
