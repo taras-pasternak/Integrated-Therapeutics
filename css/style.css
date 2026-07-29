@@ -478,24 +478,23 @@ body {
 }
 
 .photo-01 {
-    background-image: url('../assets/images/01.jpg');
+    background-image: url('../assets/images/biography.jpg');
 }
 
 .photo-02 {
-    background-image: url('../assets/images/02.jpg');
+    background-image: url('../assets/images/massage-bodywork.jpg');
 }
 
 .photo-03 {
-    background-image: url('../assets/images/03.jpg');
+    background-image: url('../assets/images/energy-alternative-therapie.jpg');
 }
 
 .photo-04 {
-    /* Тимчасово 01.jpg, змініть на 04.jpg коли завантажите нове фото */
-    background-image: url('../assets/images/01.jpg');
+    background-image: url('../assets/images/specialized treatments.jpg');
 }
 
 .photo-05 {
-    background-image: url('../assets/images/02.jpg'); /* placeholder for reviews */
+    background-image: url('../assets/images/client’s-voice.jpg');
 }
 
 /* The active photo */
