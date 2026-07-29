@@ -270,6 +270,11 @@ body {
     align-items: flex-start;
 }
 
+.address p {
+    line-height: 1.2;
+    font-size: 1.1rem;
+}
+
 .icon {
     margin-top: 2px;
     color: var(--text-main);
@@ -715,10 +720,10 @@ body {
 .contact-section {
     background-color: var(--bg-dark);
     color: var(--text-main);
-    padding: 6rem 3rem;
+    padding: 6rem 3rem 3rem 3rem;
     min-height: 100svh;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     position: relative;
     z-index: 10;
 }
@@ -727,7 +732,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -736,12 +741,16 @@ body {
 
 .contact-title-wrapper {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .contact-form-wrapper {
     flex: 1;
     max-width: 600px;
     width: 100%;
+    align-self: center;
 }
 
 .contact-title {
