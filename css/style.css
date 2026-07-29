@@ -319,6 +319,7 @@ body {
     letter-spacing: -0.03em;
     margin-bottom: 2rem;
     text-transform: uppercase;
+    width: 60%;
 }
 
 .hero-char {
