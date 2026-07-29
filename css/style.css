@@ -685,13 +685,13 @@ h3, .approach-lead, .services-subtitle {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    gap: 32px; /* horizontal gap */
 }
 
 .service-info {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding-right: 2rem; /* space before price */
+    gap: 24px; /* vertical gap */
 }
 
 .service-title {
@@ -907,7 +907,7 @@ h3, .approach-lead, .services-subtitle {
     text-align: left;
     margin-bottom: 2rem;
     letter-spacing: -0.03em;
-    color: #E3D3CF;
+    color: #FFFFFF;
 }
 
 @media (max-width: 900px) {
