@@ -671,7 +671,11 @@ h3, .approach-lead, .services-subtitle {
 .service-item {
     margin-bottom: 2rem;
     border-top: 1px solid var(--accent-color);
-    padding-top: 1.5rem;
+    padding-top: 1rem; /* reduced from 1.5rem */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    row-gap: 0.5rem;
 }
 
 .service-title {
@@ -679,25 +683,21 @@ h3, .approach-lead, .services-subtitle {
     font-weight: var(--text-button-weight, 500);
     text-transform: var(--text-button-transform, uppercase);
     letter-spacing: 0.1em;
-    display: inline-block;
-    margin-right: 8px; /* space before caption if inline, but let's make it block if needed. User has it inline in their text? No, they have it side by side or separate? */
-    /* Wait, the user showed: Biomechanical Sports Therapy [стиль button-text] $225 / 90 min [створи стиль caption (helvetica 24 thin] */
-    /* If they are on the same line, display: inline-block is good */
 }
 
 .service-caption {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 200; /* thin */
     font-size: 24px;
-    display: inline-block;
     color: var(--accent-color); /* orange color */
-    vertical-align: middle;
+    text-align: right;
 }
 
 .text-body {
+    grid-column: 1 / -1;
     font-size: var(--text-body-size, 16px);
     line-height: 1.6;
-    margin-top: 0.5rem;
+    margin-top: 0; /* removed since we use row-gap */
     color: #000000; /* black color */
     font-weight: 400; /* regular */
 }
