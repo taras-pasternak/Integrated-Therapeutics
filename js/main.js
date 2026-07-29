@@ -254,9 +254,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 targetPhoto.classList.add('show');
                                 
                                 // Calculate grayscale based on scroll progress of the section
-                                // rect.top goes from windowHeight/2 down to 0
-                                let grayscaleProgress = rect.top / (windowHeight / 2); // 1.0 when at middle, 0.0 when at top
-                                grayscaleProgress = Math.max(0, Math.min(1, grayscaleProgress));
+                                // The section is active while rect.top <= windowHeight/2 AND rect.bottom >= windowHeight/2
+                                // It starts at rect.top == windowHeight/2
+                                // It ends at rect.bottom == windowHeight/2 (which means rect.top == windowHeight/2 - rect.height)
+                                let sectionProgress = ((windowHeight / 2) - rect.top) / rect.height;
+                                sectionProgress = Math.max(0, Math.min(1, sectionProgress));
+                                
+                                // We want it to start fully grayscale (1) and end fully colored (0)
+                                let grayscaleProgress = 1.0 - sectionProgress;
                                 
                                 // Convert to percentage
                                 targetPhoto.style.filter = `grayscale(${grayscaleProgress * 100}%)`;
