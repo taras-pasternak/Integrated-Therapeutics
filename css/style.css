@@ -15,7 +15,7 @@
     --text-button-transform: uppercase;
     --font-secondary: 'Instrument Serif', serif;
     --text-subheader-size: 48px;
-    --text-title-size: clamp(4rem, 8vw, 10rem);
+    --text-title-size: clamp(4rem, 6vw, 10rem);
     --text-title-weight: 800;
 }
 
