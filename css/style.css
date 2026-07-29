@@ -652,8 +652,8 @@ h3, .approach-lead, .services-subtitle {
 }
 
 /* --- Services Section Specifics --- */
-.services-text {
-    max-width: 550px;
+.sticky-text-content.services-text {
+    max-width: 750px;
     margin-top: 5rem;
     color: #121212;
 }
