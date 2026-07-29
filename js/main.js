@@ -284,9 +284,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const heading = document.querySelector('.approach-heading-wrapper');
         
-        // 2rem is the sticky top of the heading. Get 1rem in px:
-        const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-        const headingStickyTop = 2 * remPx;
+        // Get the actual sticky top of the heading from CSS (e.g. 150px)
+        let headingStickyTop = 150; // default
+        if (heading) {
+            headingStickyTop = parseFloat(getComputedStyle(heading).top) || 150;
+        }
         
         let headingHeight = 100;
         if (heading) {
