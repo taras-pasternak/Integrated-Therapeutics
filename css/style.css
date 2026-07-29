@@ -656,10 +656,7 @@ h3, .approach-lead, .services-subtitle {
     color: #121212;
 }
 
-.services-subtitle {
-    /* Styles are now inherited from the shared h3 block */
-    margin-bottom: 1rem; /* keep the smaller bottom margin if needed, but let's override it to use the new style or keep it */
-}
+
 
 .services-quote {
     font-family: 'Georgia', serif;
