@@ -1069,10 +1069,10 @@ h3, .approach-lead, .services-subtitle {
 .contact-section {
     background-color: var(--bg-dark);
     color: var(--text-main);
-    padding: 6rem 3rem 3rem 3rem;
+    padding: 8rem 3rem 3rem 3rem;
     min-height: 100svh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     z-index: 10;
 }
@@ -1128,6 +1128,7 @@ h3, .approach-lead, .services-subtitle {
     .contact-section {
         min-height: auto;
         padding-bottom: 4rem;
+        flex-direction: column;
     }
     
     .contact-info.contact-info-footer {
@@ -1585,10 +1586,5 @@ h3, .approach-lead, .services-subtitle {
     .text-body {
         font-size: 16px;
         line-height: 18px;
-    }
-    
-    .services-quote {
-        font-size: 16px !important;
-        line-height: 18px !important;
     }
 }
