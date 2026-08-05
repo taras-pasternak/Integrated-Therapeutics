@@ -113,7 +113,7 @@ body {
     display: block !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .header.header-inverted .btn-primary {
         color: var(--bg-dark) !important;
         border-color: var(--bg-dark) !important;
@@ -361,6 +361,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100svh;
     background-color: var(--bg-dark);
     z-index: 90;
     display: flex;
@@ -565,7 +566,7 @@ body.menu-open .scroll-indicators {
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .hero-wrapper {
         padding: 1.5rem 1.5rem;
     }
@@ -807,7 +808,7 @@ h3, .approach-lead, .services-subtitle {
     text-wrap: pretty;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 767px) {
     .split-layout-container {
         flex-direction: column;
     }
@@ -828,6 +829,8 @@ h3, .approach-lead, .services-subtitle {
         top: 0;
         margin-bottom: 3rem;
     }
+    
+
 }
 
 /* --- Services Section Specifics --- */
@@ -840,11 +843,17 @@ h3, .approach-lead, .services-subtitle {
 
 
 .services-quote {
-    font-family: 'Georgia', serif;
-    font-size: 1.25rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
     font-style: italic;
+    font-weight: 400;
     margin-bottom: 3rem;
-    line-height: 1.4;
+    line-height: 22px;
+}
+
+.services-quote + p strong {
+    text-transform: uppercase;
+    color: var(--accent-color);
 }
 
 .service-item {
@@ -1097,9 +1106,89 @@ h3, .approach-lead, .services-subtitle {
     color: #FFFFFF;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+    .contact-title br {
+        display: none;
+    }
+    
+    .contact-title {
+        font-size: clamp(3rem, 12vw, 6rem);
+    }
+    
     .contact-content-wrapper {
         grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .contact-form-wrapper {
+        max-width: 100%;
+        justify-self: stretch;
+    }
+    
+    .contact-section {
+        min-height: auto;
+        padding-bottom: 4rem;
+    }
+    
+    .contact-info.contact-info-footer {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        margin-top: 4rem;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.75rem !important;
+    }
+
+    .contact-info.contact-info-footer .address {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        order: 1;
+    }
+
+    .contact-info.contact-info-footer .address p,
+    .contact-info.contact-info-footer .details a,
+    .contact-info.contact-info-footer .copyright {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 400;
+        color: var(--text-main);
+    }
+
+    .contact-info.contact-info-footer .details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        padding-left: calc(16px + 0.75rem);
+        order: 2;
+    }
+
+    .contact-info.contact-info-footer .social-links {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 24px !important;
+        align-items: center !important;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+        padding-left: calc(16px + 0.75rem);
+        order: 3;
+    }
+
+    .contact-info.contact-info-footer .copyright {
+        display: block !important;
+        padding-left: calc(16px + 0.75rem);
+        margin-top: 1rem;
+        text-align: left;
+        order: 4;
     }
 }
 
@@ -1201,7 +1290,7 @@ h3, .approach-lead, .services-subtitle {
     gap: 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .contact-section {
         padding: 6rem 1.5rem;
     }
@@ -1261,7 +1350,7 @@ h3, .approach-lead, .services-subtitle {
 }
 
 /* --- Mobile Typography Adjustments --- */
-@media (max-width: 900px) {
+@media (max-width: 767px) {
     .scroll-indicators {
         display: none;
     }
@@ -1283,7 +1372,9 @@ h3, .approach-lead, .services-subtitle {
     /* Hero section adjustments */
     .hero-wrapper {
         min-height: 100vh;
-        min-height: 100dvh;
+        min-height: 100svh;
+        height: 100vh;
+        height: 100svh;
         padding-bottom: 1.5rem;
     }
 
@@ -1356,10 +1447,85 @@ h3, .approach-lead, .services-subtitle {
         left: auto !important;
         margin-top: 4rem;
     }
+
+}
+
+/* --- Mobile Only (Normal Scroll) --- */
+@media (max-width: 767px) {
+    /* Disable screen-by-screen scroll logic */
+    .sticky-block-wrapper,
+    #category-01,
+    #category-02,
+    #category-03,
+    #category-04 {
+        height: auto !important;
+        display: block !important;
+    }
+
+    .sticky-text-content {
+        margin-top: 0 !important;
+        margin-bottom: 4rem;
+    }
+
+    /* Always show content (disable fade animations) */
+    .approach-text > *,
+    .approach-body > *,
+    .services-text > h3,
+    .services-text > p,
+    .services-text .services-list > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        transition-delay: 0s !important;
+    }
+
+    .approach-text.is-above,
+    .approach-text.is-below,
+    .services-text.is-above,
+    .services-text.is-below,
+    .approach-text,
+    .services-text {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Force normal scroll on biography and remove sticky headings */
+    .approach-section,
+    #section-approach,
+    #section-services,
+    #section-reviews {
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    .approach-heading-wrapper,
+    .approach-text,
+    .services-text {
+        position: relative !important;
+        top: auto !important;
+    }
+    
+    .approach-heading-wrapper {
+        margin-bottom: 3rem !important;
+    }
 }
 
 /* --- Tablet Global Padding --- */
-@media (min-width: 768px) and (max-width: 900px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+    .right-fixed {
+        display: none !important;
+    }
+    
+    .left-content {
+        width: 100% !important;
+    }
+
+    .services-text,
+    .approach-text,
+    .sticky-text-content {
+        max-width: 100% !important;
+    }
+
     .hero-wrapper,
     .header,
     .approach-section,
@@ -1387,8 +1553,8 @@ h3, .approach-lead, .services-subtitle {
     }
 }
 
-/* --- Services Mobile & Tablet Layout (<= 1140px) --- */
-@media (max-width: 1140px) {
+/* --- Services Mobile Layout (<= 767px) --- */
+@media (max-width: 767px) {
     .service-item {
         grid-template-columns: 1fr;
         gap: 0;
@@ -1419,5 +1585,10 @@ h3, .approach-lead, .services-subtitle {
     .text-body {
         font-size: 16px;
         line-height: 18px;
+    }
+    
+    .services-quote {
+        font-size: 16px !important;
+        line-height: 18px !important;
     }
 }
