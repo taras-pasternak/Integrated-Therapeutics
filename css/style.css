@@ -1707,9 +1707,9 @@ h3, .approach-lead, .services-subtitle {
     }
     
     .background-placeholder::before {
-        background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.2) 0%, rgba(18, 18, 18, 1) 100%), url('../assets/images/home.png');
-        background-size: auto 100%;
-        background-position: right center;
+        background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.2) 0%, rgba(18, 18, 18, 1) 100%), url('../assets/images/home-mobile.jpg');
+        background-size: cover;
+        background-position: center;
     }
     
     .contact-background-placeholder {
