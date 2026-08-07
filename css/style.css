@@ -1679,6 +1679,11 @@ h3, .approach-lead, .services-subtitle {
         padding-left: calc(16px + 0.75rem) !important;
         margin-bottom: 1.5rem !important;
     }
+
+    .header.header-inverted {
+        background-color: #ffffff;
+        border-bottom: 1px solid #eaeaea;
+    }
 }
 
 /* --- Tablet Only Adjustments (768px - 1024px) --- */
@@ -1689,5 +1694,18 @@ h3, .approach-lead, .services-subtitle {
 
     .contact-info.contact-info-footer .address p {
         font-size: 22px !important;
+    }
+
+    .header.header-inverted {
+        background-color: #ffffff;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .header {
+        padding: 1.5rem 3rem;
+    }
+
+    .scroll-indicators {
+        left: 0.5rem;
     }
 }
