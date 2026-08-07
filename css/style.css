@@ -571,6 +571,50 @@ body.menu-open .scroll-indicators {
     z-index: 10;
 }
 
+/* --- Section Tabs Navigation --- */
+.section-tabs {
+    width: 100%;
+    background-color: var(--bg-main, #ffffff);
+    border-bottom: 1px solid #eaeaea;
+    position: sticky;
+    top: 128px;
+    z-index: 90;
+    display: none; /* Hidden on desktop by default */
+}
+
+.section-tabs-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.section-tabs-list li {
+    flex: 1;
+    text-align: center;
+}
+
+.section-tabs .tab-link {
+    display: block;
+    padding: 1.5rem 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.section-tabs .tab-link:hover,
+.section-tabs .tab-link.active {
+    color: var(--accent-color, #D35431);
+    border-bottom: 2px solid var(--accent-color, #D35431);
+}
+
 /* --- Responsive --- */
 @media (max-width: 767px) {
     .hero-wrapper {
@@ -1681,8 +1725,12 @@ h3, .approach-lead, .services-subtitle {
     }
 
     .header.header-inverted {
-        background-color: #ffffff;
-        border-bottom: 1px solid #eaeaea;
+        background-color: #ffffff !important;
+        border-bottom: 1px solid #eaeaea !important;
+    }
+
+    .section-tabs {
+        top: 104px !important;
     }
 }
 
@@ -1697,8 +1745,8 @@ h3, .approach-lead, .services-subtitle {
     }
 
     .header.header-inverted {
-        background-color: #ffffff;
-        border-bottom: 1px solid #eaeaea;
+        background-color: #ffffff !important;
+        border-bottom: 1px solid #eaeaea !important;
     }
 
     .header {
@@ -1707,5 +1755,20 @@ h3, .approach-lead, .services-subtitle {
 
     .scroll-indicators {
         left: 0.5rem;
+    }
+    .section-tabs {
+        top: 104px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .section-tabs {
+        display: block !important;
+    }
+
+    .approach-title, .approach-title-bg {
+        color: #ffffff !important;
+        -webkit-text-stroke: 1px var(--accent-color);
+        paint-order: stroke fill;
     }
 }

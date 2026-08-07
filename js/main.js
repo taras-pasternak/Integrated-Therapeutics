@@ -152,6 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.body.appendChild(indicatorContainer);
 
+    // Section tabs smooth scroll
+    document.querySelectorAll('.section-tabs .tab-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
     // Global variables for scroll logic
     let appearLine = 0;
     let disappearLine = 0;
@@ -203,6 +215,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         dot.classList.add('active');
                     } else {
                         dot.classList.remove('active');
+                    }
+                });
+
+                // Update section tabs
+                document.querySelectorAll('.section-tabs .tab-link').forEach(link => {
+                    const targetId = link.getAttribute('href').substring(1);
+                    let isActive = false;
+                    
+                    if (targetId === 'section-approach' && activeId === 'section-approach') isActive = true;
+                    if (targetId === 'category-01' && ['category-01', 'category-02', 'category-03'].includes(activeId)) isActive = true;
+                    if (targetId === 'category-04' && activeId === 'category-04') isActive = true;
+                    
+                    if (isActive) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
                     }
                 });
 
