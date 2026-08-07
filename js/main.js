@@ -99,7 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const totalScroll = rect.height - windowHeight;
                     
                     let progress = 0;
-                    if (totalScroll > 0) {
+                    if (window.innerWidth <= 767) {
+                        const headingRect = heading.getBoundingClientRect();
+                        // 0 at the bottom of the screen, 1 at the top
+                        progress = 1 - (headingRect.top / windowHeight);
+                        progress = Math.max(0, Math.min(1, progress));
+                    } else if (totalScroll > 0) {
                         // Start animation when section hits top of viewport (rect.top <= 0)
                         const scrolled = -rect.top;
                         progress = scrolled / totalScroll;
