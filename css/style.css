@@ -72,9 +72,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../assets/images/home.png');
-    background-size: auto 100%;
-    background-position: right center;
+    background-image: url('../assets/images/home.jpg');
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
 }
@@ -1708,6 +1708,8 @@ h3, .approach-lead, .services-subtitle {
     
     .background-placeholder::before {
         background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.2) 0%, rgba(18, 18, 18, 1) 100%), url('../assets/images/home.png');
+        background-size: auto 100%;
+        background-position: right center;
     }
     
     .contact-background-placeholder {
