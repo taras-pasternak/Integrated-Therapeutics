@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hero Spotlight Effect
     const heroWrapper = document.getElementById('hero');
-    const heroPlaceholder = document.querySelector('.background-placeholder');
+    const heroPlaceholder = document.querySelector('.hero-wrapper .background-placeholder');
     if (heroWrapper && heroPlaceholder) {
         heroWrapper.addEventListener('mousemove', (e) => {
             const rect = heroWrapper.getBoundingClientRect();
@@ -383,6 +383,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = e.clientY - rect.top;
             heroPlaceholder.style.setProperty('--x', `${x}px`);
             heroPlaceholder.style.setProperty('--y', `${y}px`);
+        });
+    }
+
+    // Contact Spotlight Effect
+    const contactSection = document.getElementById('contact');
+    const contactPlaceholder = document.querySelector('.contact-background-placeholder');
+    if (contactSection && contactPlaceholder) {
+        contactSection.addEventListener('mousemove', (e) => {
+            const rect = contactSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            contactPlaceholder.style.setProperty('--x', `${x}px`);
+            contactPlaceholder.style.setProperty('--y', `${y}px`);
         });
     }
 

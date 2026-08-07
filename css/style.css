@@ -72,9 +72,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../assets/images/home.jpg');
-    background-size: cover;
-    background-position: center;
+    background-image: url('../assets/images/home.png');
+    background-size: auto 100%;
+    background-position: right center;
+    background-repeat: no-repeat;
     z-index: -1;
 }
 
@@ -563,6 +564,11 @@ body.menu-open .scroll-indicators {
     letter-spacing: 0.05em;
     color: rgba(234, 227, 222, 0.5); /* Semi-transparent text-main */
     text-transform: uppercase;
+    padding-left: calc(16px + 0.75rem);
+}
+
+.contact-info.contact-info-footer {
+    z-index: 10;
 }
 
 /* --- Responsive --- */
@@ -1077,7 +1083,46 @@ h3, .approach-lead, .services-subtitle {
     z-index: 10;
 }
 
+.contact-background-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark); /* Fallback */
+    z-index: 1;
+    overflow: hidden;
+    
+    /* Spotlight mask */
+    --x: 50%;
+    --y: 50%;
+    -webkit-mask-image: radial-gradient(circle 400px at var(--x) var(--y), black 0%, transparent 100%);
+    mask-image: radial-gradient(circle 400px at var(--x) var(--y), black 0%, transparent 100%);
+    opacity: 0; /* Hidden by default until hovered */
+    transition: opacity 0.5s ease;
+}
+
+.contact-background-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('../assets/images/get in touch.png');
+    background-size: auto 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.contact-section:hover .contact-background-placeholder {
+    opacity: 1;
+}
+
 .contact-content-wrapper {
+    position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: start;
@@ -1133,17 +1178,20 @@ h3, .approach-lead, .services-subtitle {
     
     .contact-info.contact-info-footer {
         position: relative !important;
+        z-index: 2;
         bottom: auto !important;
         left: auto !important;
         margin-top: 4rem;
         display: flex !important;
-        flex-direction: column !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        column-gap: 64px !important;
+        row-gap: 1.5rem !important;
         width: 100% !important;
-        gap: 0.75rem !important;
     }
 
     .contact-info.contact-info-footer .address {
-        width: 100%;
+        width: auto;
         display: flex;
         align-items: flex-start;
         gap: 0.75rem;
@@ -1151,8 +1199,7 @@ h3, .approach-lead, .services-subtitle {
     }
 
     .contact-info.contact-info-footer .address p,
-    .contact-info.contact-info-footer .details a,
-    .contact-info.contact-info-footer .copyright {
+    .contact-info.contact-info-footer .details a {
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 18px;
         line-height: 24px;
@@ -1161,14 +1208,14 @@ h3, .approach-lead, .services-subtitle {
     }
 
     .contact-info.contact-info-footer .details {
-        width: 100%;
+        width: auto;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.25rem;
         overflow-wrap: anywhere;
         word-break: break-word;
-        padding-left: calc(16px + 0.75rem);
+        padding-left: 0;
         order: 2;
     }
 
@@ -1186,10 +1233,12 @@ h3, .approach-lead, .services-subtitle {
 
     .contact-info.contact-info-footer .copyright {
         display: block !important;
+        width: 100%;
         padding-left: calc(16px + 0.75rem);
         margin-top: 1rem;
         text-align: left;
         order: 4;
+        font-size: 14px !important;
     }
 }
 
@@ -1298,7 +1347,7 @@ h3, .approach-lead, .services-subtitle {
     
     .form-footer {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         gap: 3rem;
     }
     
@@ -1417,9 +1466,10 @@ h3, .approach-lead, .services-subtitle {
         padding-left: calc(16px + 0.75rem); /* Align with address text */
     }
 
-    /* Hide copyright on mobile */
+    /* Show copyright on mobile with 50% opacity */
     .contact-info .copyright {
-        display: none !important;
+        display: block !important;
+        opacity: 0.5;
     }
 
     /* Social icons */
@@ -1586,5 +1636,58 @@ h3, .approach-lead, .services-subtitle {
     .text-body {
         font-size: 16px;
         line-height: 18px;
+    }
+}
+
+/* --- Tablet & Mobile Hero Adjustments (<= 1024px) --- */
+@media (max-width: 1024px) {
+    .background-placeholder {
+        opacity: 1; /* Always show image, no spotlight hover needed */
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+    
+    .background-placeholder::before {
+        background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.2) 0%, rgba(18, 18, 18, 1) 100%), url('../assets/images/home.png');
+    }
+    
+    .contact-background-placeholder {
+        display: none !important;
+    }
+}
+
+/* --- Mobile Contact Adjustments (< 768px) --- */
+@media (max-width: 767px) {
+    .contact-section {
+        padding-bottom: 24px !important;
+    }
+
+    .contact-info.contact-info-footer {
+        flex-direction: column !important;
+        row-gap: 0.75rem !important;
+    }
+
+    .contact-info.contact-info-footer .address {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .contact-info.contact-info-footer .address p {
+        font-size: 22px !important;
+    }
+
+    .contact-info.contact-info-footer .details {
+        padding-left: calc(16px + 0.75rem) !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+/* --- Tablet Only Adjustments (768px - 1024px) --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .copyright-br {
+        display: none;
+    }
+
+    .contact-info.contact-info-footer .address p {
+        font-size: 22px !important;
     }
 }
