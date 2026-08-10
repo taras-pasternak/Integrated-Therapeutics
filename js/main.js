@@ -116,8 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     // font-weight: 700 to 200 (thin)
                     const weight = 700 - (progress * 500);
                     
+                    // stroke: 2px to 0px
+                    const strokeWidth = 2 * (1 - progress);
+                    
+                    // opacity: fade to 0 in the last 20% of the scroll
+                    const opacity = progress > 0.8 ? (1 - progress) / 0.2 : 1;
+                    
                     heading.style.letterSpacing = `${tracking}em`;
                     heading.style.fontWeight = weight;
+                    heading.style.webkitTextStroke = `${strokeWidth}px var(--accent-color)`;
+                    heading.style.opacity = opacity;
                 }
             });
         });
