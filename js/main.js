@@ -116,15 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     // font-weight: 700 to 200 (thin)
                     const weight = 700 - (progress * 500);
                     
-                    // stroke: 2px to 0px
-                    const strokeWidth = 2 * (1 - progress);
+                    // stroke: stay at 2px until the last 10%, then decrease to 0
+                    const strokeWidth = progress > 0.9 ? 2 * (1 - (progress - 0.9) / 0.1) : 2;
                     
-                    // opacity: fade in at start (first 10%), fade out in the last 20%
+                    // opacity: fade in at start (first 10%), fade out in the last 10%
                     let opacity = 1;
                     if (progress < 0.1) {
                         opacity = progress / 0.1;
-                    } else if (progress > 0.8) {
-                        opacity = (1 - progress) / 0.2;
+                    } else if (progress > 0.9) {
+                        opacity = (1 - progress) / 0.1;
                     }
                     
                     heading.style.letterSpacing = `${tracking}em`;
