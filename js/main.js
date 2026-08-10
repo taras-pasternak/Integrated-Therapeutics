@@ -119,8 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     // stroke: 2px to 0px
                     const strokeWidth = 2 * (1 - progress);
                     
-                    // opacity: fade to 0 in the last 20% of the scroll
-                    const opacity = progress > 0.8 ? (1 - progress) / 0.2 : 1;
+                    // opacity: fade in at start (first 10%), fade out in the last 20%
+                    let opacity = 1;
+                    if (progress < 0.1) {
+                        opacity = progress / 0.1;
+                    } else if (progress > 0.8) {
+                        opacity = (1 - progress) / 0.2;
+                    }
                     
                     heading.style.letterSpacing = `${tracking}em`;
                     heading.style.fontWeight = weight;

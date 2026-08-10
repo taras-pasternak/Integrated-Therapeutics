@@ -752,6 +752,16 @@ body.menu-open .scroll-indicators {
     animation-range: entry 100% exit -50%;
 }
 
+@media (min-width: 768px) {
+    #section-services .approach-heading-wrapper {
+        top: 144px;
+        margin-bottom: 0;
+    }
+    #section-services .approach-title {
+        opacity: 0; /* Hidden initially until scroll */
+    }
+}
+
 @keyframes slideRight {
     from {
         transform: translateX(0);
