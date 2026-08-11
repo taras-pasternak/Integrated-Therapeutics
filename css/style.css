@@ -1803,7 +1803,7 @@ h3, .approach-lead, .services-subtitle {
 }
 
 .approach-title, .approach-title-bg {
-    color: #ffffff !important;
+    color: var(--accent-color) !important;
     -webkit-text-stroke: 2px var(--accent-color);
     paint-order: stroke fill;
 }
