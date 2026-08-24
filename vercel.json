@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/services/:match*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
